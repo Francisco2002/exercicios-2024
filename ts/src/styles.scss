@@ -212,54 +212,81 @@
                 justify-content: flex-end;
                 margin: 12px 0;
             }
+        }
 
-            .details-box {
-                border-radius: 3px;
-                border: 1px solid #ECECEC;
+        .information-box {
+            border-radius: 3px;
+            border: 1px solid #ECECEC;
 
-                .details-header {
-                    background-color: #FDF1EB;
-                    font-family: 'Roboto';
-                    font-size: 20px;
-                    font-weight: 500;
-                    line-height: 25px;
-                    color: #4E4E4E;
-                    padding: 10px 15px;
-                    border-bottom: 1px solid #ECECEC;
+            .information-header {
+                background-color: #FDF1EB;
+                font-family: 'Roboto';
+                font-size: 20px;
+                font-weight: 500;
+                line-height: 25px;
+                color: #4E4E4E;
+                padding: 10px 15px;
+                border-bottom: 1px solid #ECECEC;
+            }
+
+            .information-content {
+                padding: 10px 15px;
+                display: flex;
+                flex-direction: column;
+
+                font-family: 'Quicksand';
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 14.4px;
+                letter-spacing: 0.02em;
+                color: #5C5C5C;
+
+                strong, ul.list-authors li:first-child {
+                    font-weight: 700;
                 }
 
-                .details-content {
-                    max-height: 439px;
-                    overflow-y: scroll;
-                    padding: 10px 15px;
-                    display: flex;
-                    flex-direction: column;
-
+                .txt-information {
                     font-family: 'Quicksand';
-                    font-size: 12px;
+                    font-size: 14px;
                     font-weight: 400;
-                    line-height: 14.4px;
+                    line-height: 22.75px;
                     letter-spacing: 0.02em;
                     color: #5C5C5C;
-
-                    strong, ul.list-authors li:first-child {
-                        font-weight: 700;
+                    
+                    &.collapse-data {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 5;
+                                line-clamp: 5;
+                        -webkit-box-orient: vertical;
                     }
+                }
 
-                    ul.list-authors  {
-                        margin-top: 15px;
-                        line-height: 16.8px;
+                ul.list-authors  {
+                    margin-top: 15px;
+                    line-height: 16.8px;
 
-                        li:first-child {
-                            font-size: 14px;
-                        }
+                    li:first-child {
+                        font-size: 14px;
                     }
+                }
 
-                    ul.list-mentions  {
-                        margin-top: 20px;
-                        color: #ADA0A0;
-                        font-size: 12px;
-                    }
+                ul.list-mentions  {
+                    margin-top: 20px;
+                    color: #ADA0A0;
+                    font-size: 12px;
+                }
+
+                .btn-show-more {
+                    display: flex;
+                    align-self: flex-end;
+                    font-family: 'Quicksand';
+                    font-size: 14px;
+                    font-weight: 700;
+                    line-height: 21.33px;
+                    letter-spacing: 0.02em;
+                    color: #ED7839;
                 }
             }
         }
