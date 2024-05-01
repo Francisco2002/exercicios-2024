@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "start-server-and-test start http://localhost:4200 cypress:run-base",
-    "cypress:run-base": "npx cypress run --env type=base"
+    "cypress:run-base": "npx cypress run --env type=base",
+    "cypress:open": "npx cypress open --env type=base"
   },
   "private": true,
   "dependencies": {
