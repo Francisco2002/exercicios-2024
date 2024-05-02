@@ -96,7 +96,6 @@ svg.material-icons:not(:last-child) {
   background-color: #fff;
   flex: 1;
   margin: 0 8px 16px;
-  padding: 16px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -104,6 +103,12 @@ svg.material-icons:not(:last-child) {
   line-height: 24px;
   font-family: 'Quicksand';
   position: relative;
+
+  &.hidden-comments {
+    .comments-container {
+      display: none;
+    }
+  }
 
   .card-blur {
     filter: blur(5px);
@@ -140,7 +145,7 @@ svg.material-icons:not(:last-child) {
   }
 
   .card-header {
-    h3 {
+    .ops-topic-subject {
       font-size: 16px;
       font-weight: 700;
       line-height: 20px;
@@ -182,6 +187,41 @@ svg.material-icons:not(:last-child) {
       color: #757575;
     }
   }
+
+  .card-content {
+    padding: 16px;
+  }
+
+  .comments-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    .comment-item {
+      border-top: 1px solid #E7E7E7;
+      padding: 16px;
+      font-family: 'Quicksand';
+
+      &.comment-highlight {
+        background-color: #F8F8F8;
+      }
+
+      h3 {
+        margin: 0;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 15px;
+        margin-bottom: 10px;
+      }
+
+      .comment-content {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 17.5px;
+        margin-bottom: 20px;
+      }
+    }
+  }
 }
 
 .card-container .card:not(:last-child) {
@@ -193,21 +233,13 @@ svg.material-icons:not(:last-child) {
   width: 168px;
 }
 
-.card-container .card:not(.highlight-card) {
+.card-container .card.answered-topic {
   cursor: pointer;
 }
 
-.card-container .card:not(.highlight-card):hover {
+.card-container .card.answered-topic:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
-}
-
-.card-container .card:not(.highlight-card):hover .material-icons path {
-  fill: rgb(105, 103, 103);
-}
-
-.card.card.highlight-card span {
-  margin-left: 60px;
 }
 
 svg#rocket {
@@ -296,7 +328,7 @@ svg#clouds {
     width: 100%;
   }
 
-  .card:not(.highlight-card) {
+  .card.answered-topic {
     height: 16px;
     margin: 8px 0;
   }

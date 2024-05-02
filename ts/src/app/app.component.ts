@@ -21,20 +21,42 @@ export class AppComponent {
       author: {
         name: "Carlos Henrique Santos"
       },
-      answered: false,
-      likes_count: 1,
-      comments: [{}, {}],
-    },
-    {
-      id: 2,
-      subject: "Assunto da pergunta aparece aqui",
-      inside: "Comecinho da pergunta aparece aqui resente relato inscreve-se no campo da análise da dimensão e impacto de processo formativo situado impacto de processo formativo processo",
-      author: {
-        name: "Carlos Henrique Santos"
-      },
       answered: true,
       likes_count: 1,
-      comments: [{}, {}],
+      comments: [
+        {
+          author: {
+            name: "Adriano da Silva"
+          },
+          comment: "Resposta do autor é aqui. Relato inscreve-se no campo da análise da dimensão e impacto de processo formativo situado impacto de processo formativo processo resente relato inscreve-se no campo da análise da dimensão e impacto de processo formativo situado impacto de processo formativo processo.",
+          isPostAuthor: true,
+          isPostCoAuthor: false,
+        },
+        {
+          author: {
+            name: "Carlos Henrique Santos"
+          },
+          comment: "Consegui entender melhor agora! Parece que a variação da análise da dimensão e impacto de processo formativo situado impacto de processo formativo.\n\nObrigada pela resposta, muito interessante o seu trabalho!",
+          isPostAuthor: false,
+          isPostCoAuthor: false,
+        },
+        {
+          author: {
+            name: "Carmila Ferreira Andrade"
+          },
+          comment: "Também ínteressante lembrar que o relato inscreve-se no campo da análise da dimensão e impacto de processo formativo situado impacto de processo formativo processo resente relato inscreve-se no campo da análise da dimensão e impacto de processo formativo situado impacto de processo formativo processo.\n\nSituado impacto de processo formativo processo resente relato inscreve-se no campo da análise da dimensão e impacto de processo formativo situado impacto de processo formativo processo.",
+          isPostAuthor: false,
+          isPostCoAuthor: true,
+        },
+        {
+          author: {
+            name: "Ana Carolina"
+          },
+          comment: "Resposta do autor é aqui. Relato inscreve-se no campo da análise da dimensão e impacto de processo formativo situado impacto de processo formativo processo resente relato inscreve-se no campo da análise da dimensão e impacto de processo formativo situado impacto de processo formativo processo.",
+          isPostAuthor: false,
+          isPostCoAuthor: true,
+        },
+      ],
     },
   ];
 
@@ -65,18 +87,29 @@ export class AppComponent {
     this.creatingTopic = true;
   }
 
+  toggleCommentsContainerDisplay(index: number) {
+    console.log("AQUI")
+
+    const card = document.getElementById("card-"+index);
+
+    if(card) {
+      if(card.classList.contains('hidden-comments')) {
+        console.log("remove");
+        card.classList.remove('hidden-comments')
+      } else {
+        console.log("add")
+        card.classList.add('hidden-comments')
+      }
+    }
+  }
+
   handleSubmit() {
     console.log(this.topicForm.value);
 
-    if(!this.topicForm.value.subject || !this.topicForm.value.inside) {
-      alert("Preencha o assunto e a descrição do tópico!");
-      return;
-    }
-
     const newTopic = {
       id: this.items.length,
-      subject: this.topicForm.value.subject,
-      inside: this.topicForm.value.inside,
+      subject: this.topicForm.value.subject || "Teste",
+      inside: this.topicForm.value.inside || "Testando",
       author: {
         name: "Francisco Eduardo Pereira Sousa Silva"
       },
