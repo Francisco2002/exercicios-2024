@@ -7,11 +7,11 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'DevChuva';
   showMore = false;
   creatingTopic = false;
   showSuccessMessage = true;
   submitSuccess = false;
+  editTopic: any = null;
 
   items = [
     {
@@ -88,8 +88,6 @@ export class AppComponent {
   }
 
   toggleCommentsContainerDisplay(index: number) {
-    console.log("AQUI")
-
     const card = document.getElementById("card-"+index);
 
     if(card) {
@@ -104,22 +102,43 @@ export class AppComponent {
   }
 
   handleSubmit() {
-    console.log(this.topicForm.value);
+    if(!this.editTopic) {
+      const newTopic = {
+        id: this.items.length + 1,
+        subject: this.topicForm.value.subject || "Teste",
+        inside: this.topicForm.value.inside || "Testando",
+        author: {
+          name: "Francisco Eduardo Pereira Sousa Silva"
+        },
+        answered: false,
+        likes_count: 0,
+        comments: [],
+      }
 
-    const newTopic = {
-      id: this.items.length,
-      subject: this.topicForm.value.subject || "Teste",
-      inside: this.topicForm.value.inside || "Testando",
-      author: {
-        name: "Francisco Eduardo Pereira Sousa Silva"
-      },
-      answered: false,
-      likes_count: 0,
-      comments: [],
+      this.items.unshift(newTopic);
+    } else {
+      const itemsUpdated = this.items.map(item => {
+        if(item.id === this.editTopic.id) {
+          return {
+            ...item,
+            subject: this.topicForm.value.subject || "Teste",
+            inside: this.topicForm.value.inside || "Testando",
+          }
+        }
+
+        return item;
+      })
+
+      this.items = itemsUpdated;
     }
 
-    this.items.unshift(newTopic);
     this.submitSuccess = true;
     this.creatingTopic= false;
+  }
+
+  handleEditTopic(topic: any) {
+    this.editTopic = topic;
+    this.topicForm.setValue({ subject: topic.subject, inside: topic.inside });
+    this.creatingTopic = true;
   }
 }
